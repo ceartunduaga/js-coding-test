@@ -1,17 +1,13 @@
 module.exports = {
   presets: [
-    [
-      "@babel/preset-react"
-    ],
-    [
-      "@babel/preset-env",{"modules": "false"}
-    ]
+    ['@babel/preset-env', {
+      modules: 'commonjs'
+    }],
+    '@babel/preset-react'
   ],
   plugins: [
     '@babel/plugin-transform-runtime',
     '@babel/plugin-proposal-private-property-in-object',
-    'babel-plugin-transform-import-meta',
-    'babel-plugin-transform-esm',
     'babel-plugin-styled-components',
     '@babel/plugin-proposal-class-properties',
   ],

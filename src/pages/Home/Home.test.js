@@ -5,6 +5,10 @@ import { MemoryRouter } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 import Home from './Home';
 
+jest.mock("@mui/x-charts", () => ({ 
+  BarChart: jest.fn().mockImplementation(({ children }) => children)
+}));
+
 const mockStore = configureStore([]);
 const initialState = {
   orders: {
