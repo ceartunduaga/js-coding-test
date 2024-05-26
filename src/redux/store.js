@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import orderReducer from './reducers/orderReducer';
+import ordersReducer from './reducers/ordersReducer';
 
 const store = configureStore({
   reducer: {
-    orders: orderReducer,
+    orders: ordersReducer,
   },
 });
 

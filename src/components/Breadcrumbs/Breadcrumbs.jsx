@@ -4,7 +4,6 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import { useNavigate } from 'react-router-dom';
 import Chip from '@mui/material/Chip';
 import HomeIcon from '@mui/icons-material/Home';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const StyledBreadcrumb = styled(Chip)(({ theme }) => {
     const backgroundColor =
@@ -35,7 +34,7 @@ export const CustomizedBreadcrumbs = ({ currentPage }) => {
     };
 
     return (
-        <Breadcrumbs aria-label="breadcrumb">
+        <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 2 }}>
             <StyledBreadcrumb
                 component="a"
                 href="#"

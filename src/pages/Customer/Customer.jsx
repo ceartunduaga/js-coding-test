@@ -1,49 +1,46 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Typography } from '@mui/material';
+import { Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import { useSelector } from 'react-redux';
-import { CustomizedBreadcrumbs } from "../../components/Breadcrumbs";
-import { DataGrid } from '@mui/x-data-grid';
-import moment from 'moment';
+import { CustomizedBreadcrumbs } from "../../components/Breadcrumbs/Breadcrumbs";
+import Row from './CustomerRow';
 
 export const Customer = () => {
   const { customerName } = useParams();
-  const { orders, loading, error } = useSelector((state) => state.orders);
+  const { orders } = useSelector((state) => state.orders);
   const customerOrders = orders
-    .filter(order => order.CustomerName === customerName)
-    .map(order => ({ 
-      ...order, 
-      id: order.OrderId,
-      Date: moment(order.Date).format('MMMM Do YYYY, h:mm a')
-    }));
-  console.log(customerOrders)
+    .filter(order => order.CustomerName === customerName);
+  const ccyFormat = (num) => `$ ${num.toFixed(2)}`;
 
-  const columns = [
-    { field: 'OrderId', headerName: 'Order ID', flex: 1 },
-    { field: 'Date', headerName: 'Date', flex: 2 },
-    { field: 'Total', headerName: 'Total', flex: 1 },
-  ];
   const totalSum = customerOrders.reduce((sum, order) => sum + parseFloat(order.Total.replace('$', '')), 0);
 
   return (
     <div style={{ height: 'auto', width: '100%' }}>
       <CustomizedBreadcrumbs currentPage={`${customerName}'s Order History`} />
-      <Typography variant="h4">{customerName}'s Order History</Typography>
-      
-      <DataGrid
-        rows={customerOrders}
-        columns={columns}
-        pageSize={customerOrders.length}
-        autoHeight 
-        pagination={false}
-        components={{
-          Footer: () => (
-            <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '0.5rem 1rem', backgroundColor: '#f0f0f0', fontWeight: 'bold' }}>
-              Total: $ {totalSum.toFixed(2)}
-            </div>
-          )
-        }}
-      />
+      <Typography variant="h4" sx={{ mb: 2 }}>{customerName}'s Order History</Typography>
+
+      <TableContainer component={Paper}>
+      <Table aria-label="collapsible table">
+        <TableHead>
+          <TableRow>
+            <TableCell />
+            <TableCell>Order Id</TableCell>
+            <TableCell>Date</TableCell>
+            <TableCell align="right">Total</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {customerOrders.map((row) => (
+            <Row key={row.OrderId} row={row} />
+          ))}
+          <TableRow>
+            <TableCell rowSpan={1} colSpan={2}/>
+            <TableCell colSpan={1} align="right">Sum Of Total Orders:</TableCell>
+            <TableCell align="right">{ccyFormat(totalSum)}</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </TableContainer>
     </div>
   );
 };

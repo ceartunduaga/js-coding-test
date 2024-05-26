@@ -6,13 +6,18 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import store from './redux/store';
 import { Provider } from "react-redux";
+import NavBar from "./components/NavBar/NavBar";
+import Container from '@mui/material/Container';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <App />
+        <NavBar />
+        <Container maxWidth="xl" className="container">
+          <App />
+        </Container>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>
