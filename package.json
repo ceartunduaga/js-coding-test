@@ -23,9 +23,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "node --expose-gc --no-compilation-cache ./node_modules -c src/jest.config.js --maxWorkers=6",
-    "eject": "react-scripts eject",
-    "test:ui": "jest"
+    "test": "jest",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
