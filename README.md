@@ -2,10 +2,27 @@
 
 Using the receipts provided here: https://doc.strider.tech/content/receipts.json, design a UI to showcase information about the data. Note: The instructions are intentionally vague to allow you to design the UI how you think best meets the requirements:
 
-To run the app:
+## Prerequisites
+
+Make sure you have Node.js and npm installed on your system. You can download Node.js from [nodejs.org](https://nodejs.org/).
+
+## Installation
+
+To install the project dependencies, run the following command in the root directory of the project:
 
 ```
-npm install && npm start
+npm install
+```
+
+To run the app:
+```
+npm start
+```
+
+To run the app test:
+
+```
+npm test
 ```
 
 ## Requirements

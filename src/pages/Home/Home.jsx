@@ -33,7 +33,6 @@ export default function Home() {
     ? Object.keys(revenuePerCustomer).reduce((a, b) => revenuePerCustomer[a] > revenuePerCustomer[b] ? a : b)
     : 'No items sold';
 
-
   const orderData = Object.entries(ordersPerCustomer).map(([customer, orders]) => ({
     customer,
     orders,
